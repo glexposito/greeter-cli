@@ -32,7 +32,7 @@ jobs:
         id: gitversion
         uses: GitTools/actions/gitversion/execute@v3
         with:
-          working-directory: ${{ github.workspace }}
+          targetPath: ${{ github.workspace }}
 
       - name: Display calculated version
         run: |
