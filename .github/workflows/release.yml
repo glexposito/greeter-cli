@@ -58,7 +58,7 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git tag v${{ steps.gitversion.outputs.semVer }}
+          git tag v${{ steps.gitversion.outputs.semVer }} $GITHUB_SHA
           git push origin v${{ steps.gitversion.outputs.semVer }}
 
       - name: Create GitHub release
