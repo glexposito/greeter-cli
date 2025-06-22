@@ -58,23 +58,8 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git tag v${{ steps.gitversion.outputs.semVer }} $GITHUB_SHA
+          git tag v${{ steps.gitversion.outputs.semVer }}
           git push origin v${{ steps.gitversion.outputs.semVer }}
-
-      - name: Verify remote tag exists
-        run: git ls-remote --tags origin | grep v${{ steps.gitversion.outputs.semVer }}
-
-      - name: Create GitHub release
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: v${{ steps.gitversion.outputs.semVer }}
-          name: v${{ steps.gitversion.outputs.semVer }}
-          body: "Automated release for version v${{ steps.gitversion.outputs.semVer }}."
-          draft: false
-          prerelease: false
-          skip_if_release_exists: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload release assets
         uses: softprops/action-gh-release@v2
