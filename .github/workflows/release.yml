@@ -21,13 +21,15 @@ jobs:
           dotnet-version: '9.0.x'
 
       - name: Install GitVersion
-        uses: GitTools/actions/gitversion/setup@v3
-        with:
-          versionSpec: '5.x'
+      uses: GitTools/actions/gitversion/setup@v3
+      with:
+        versionSpec: '6.x'
 
       - name: Run GitVersion
-        id: gitversion
-        uses: GitTools/actions/gitversion/execute@v3
+      id: gitversion
+      uses: GitTools/actions/gitversion/execute@v3
+      with:
+        disableCache: true
 
       - name: Display calculated version
         run: |
@@ -41,7 +43,7 @@ jobs:
 
       - name: Run tests
         run: dotnet test tests/GreeterCli.Tests/GreeterCli.Tests.csproj --no-build --logger "console"
-
+      
       - name: Publish self-contained app for Windows
         run: dotnet publish src/GreeterCli.App/GreeterCli.App.csproj --configuration Release --runtime win-x64 --self-contained true --output ./publish/win /p:Version=${{ steps.gitversion.outputs.semVer }}
 
