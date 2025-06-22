@@ -23,7 +23,7 @@ jobs:
       - name: Install GitVersion
         uses: GitTools/actions/gitversion/setup@v0.9.14
         with:
-          versionSpec: 'latest'
+          versionSpec: '6.x'
 
       - name: Run GitVersion
         id: gitversion
