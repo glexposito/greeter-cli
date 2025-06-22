@@ -40,7 +40,7 @@ jobs:
         run: dotnet build src/GreeterCli.App/GreeterCli.App.csproj --configuration Release --no-restore /p:Version=${{ steps.gitversion.outputs.semVer }}
 
       - name: Run tests
-        run: dotnet test tests/GreeterCli.Tests/GreeterCli.Tests.csproj --no-build --logger "console;verbosity=detailed"
+        run: dotnet test tests/GreeterCli.Tests/GreeterCli.Tests.csproj --no-build --verbosity normal
 
       - name: Publish self-contained app for Windows
         run: dotnet publish src/GreeterCli.App/GreeterCli.App.csproj --configuration Release --runtime win-x64 --self-contained true --output ./publish/win /p:Version=${{ steps.gitversion.outputs.semVer }}
