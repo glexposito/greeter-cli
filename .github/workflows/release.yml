@@ -25,6 +25,22 @@ jobs:
         with:
           versionSpec: '6.x'
 
+      - name: Debug git repo state
+        run: |
+          echo "👉 Current branch:"
+          git branch --show-current
+          
+          echo "👉 Tags in repo:"
+          git tag
+          
+          echo "👉 Recent commits:"
+          git log --oneline --decorate -n 10
+
+      - name: Run GitVersion manually
+        run: |
+          echo "👉 Running dotnet-gitversion manually:"
+          dotnet-gitversion /output json || echo "⚠️ GitVersion failed — check repo state, tags, branch"
+
       - name: Run GitVersion
         id: gitversion
         uses: GitTools/actions/gitversion/execute@v3
