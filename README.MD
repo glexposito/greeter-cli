@@ -20,21 +20,23 @@ This project is a **proof of concept (POC) to automatically generate, package, a
 ### 🪟 Windows
 
 ```sh
-Greeter-<version>-win-x64.exe --name Alice
+Greeter-<version>-win-x64.exe Alice --shout
 ```
 
 ### 🐧 Linux
 
 ```sh
 chmod +x Greeter-<version>-linux-x64
-./Greeter-<version>-linux-x64 --name Alice
+./Greeter-<version>-linux-x64 Alice --whisper
 ```
 
 ### ⚙️ Options
 
-- `--name <NAME>`: Specify the name to greet.
+- `<NAME>`: The name to greet.
 - `--shout`: Print the greeting in uppercase.
 - `--whisper`: Print the greeting in lowercase.
+
+Print the normal greeting when no option is used.
 
 ## 🛠️ Development
 
