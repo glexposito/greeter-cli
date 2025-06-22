@@ -78,6 +78,7 @@ jobs:
       - name: Upload release assets
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: v${{ steps.gitversion.outputs.semVer }}
           files: |
             ./publish/Greeter-${{ steps.gitversion.outputs.semVer }}-win-x64.exe
             ./publish/Greeter-${{ steps.gitversion.outputs.semVer }}-linux-x64
