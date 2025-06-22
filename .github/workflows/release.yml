@@ -72,6 +72,7 @@ jobs:
           body: "Automated release for version v${{ steps.gitversion.outputs.semVer }}."
           draft: false
           prerelease: false
+          skip_if_release_exists: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
