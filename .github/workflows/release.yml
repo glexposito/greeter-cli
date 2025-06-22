@@ -32,7 +32,8 @@ jobs:
           disableCache: true
 
       - name: Display calculated version
-        run: echo "GitVersion calculated SemVer: ${{ steps.gitversion.outputs.semVer }}"
+        run: |
+          echo "GitVersion calculated SemVer: ${{ steps.gitversion.outputs.semVer }}"
 
       - name: Restore dependencies
         run: dotnet restore src/GreeterCli.App/GreeterCli.App.csproj
