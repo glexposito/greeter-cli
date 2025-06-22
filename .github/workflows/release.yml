@@ -43,12 +43,24 @@ jobs:
 
       - name: Run tests
         run: dotnet test tests/GreeterCli.Tests/GreeterCli.Tests.csproj --no-build --logger "console"
-      
-      - name: Publish self-contained app for Windows
-        run: dotnet publish src/GreeterCli.App/GreeterCli.App.csproj --configuration Release --runtime win-x64 --self-contained true --output ./publish/win /p:Version=${{ steps.gitversion.outputs.semVer }}
 
-      - name: Publish self-contained app for Linux
-        run: dotnet publish src/GreeterCli.App/GreeterCli.App.csproj --configuration Release --runtime linux-x64 --self-contained true --output ./publish/linux /p:Version=${{ steps.gitversion.outputs.semVer }}
+      - name: Publish single-file self-contained app for Windows
+        run: dotnet publish src/GreeterCli.App/GreeterCli.App.csproj \
+          --configuration Release \
+          --runtime win-x64 \
+          --self-contained true \
+          /p:PublishSingleFile=true \
+          /p:Version=${{ steps.gitversion.outputs.semVer }} \
+          --output ./publish/win
+
+      - name: Publish single-file self-contained app for Linux
+        run: dotnet publish src/GreeterCli.App/GreeterCli.App.csproj \
+          --configuration Release \
+          --runtime linux-x64 \
+          --self-contained true \
+          /p:PublishSingleFile=true \
+          /p:Version=${{ steps.gitversion.outputs.semVer }} \
+          --output ./publish/linux
 
       - name: Rename Windows output with version
         run: mv ./publish/win/GreeterCli.App.exe ./publish/Greeter-${{ steps.gitversion.outputs.semVer }}-win-x64.exe
