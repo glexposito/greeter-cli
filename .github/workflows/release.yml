@@ -28,6 +28,8 @@ jobs:
       - name: Run GitVersion
         id: gitversion
         uses: GitTools/actions/gitversion/execute@v3
+        with:
+          working-directory: ${{ github.workspace }}
 
       - name: Display calculated version
         run: |
