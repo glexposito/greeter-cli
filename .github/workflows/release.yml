@@ -18,7 +18,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '9.0.x'
+          dotnet-version: '8.0.x'
 
       - name: Install GitVersion
         uses: GitTools/actions/gitversion/setup@v3
@@ -34,6 +34,11 @@ jobs:
       - name: Display calculated version
         run: |
           echo "GitVersion calculated SemVer: ${{ steps.gitversion.outputs.semVer }}"
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
 
       - name: Restore dependencies
         run: dotnet restore src/GreeterCli.App/GreeterCli.App.csproj
