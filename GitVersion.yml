@@ -1,4 +1,41 @@
+# GitVersion.yml
+
+# Specifies the overall versioning mode for the repository.
+# Mainline mode is generally good for trunk-based development where
+# 'main' is your primary, shippable branch.
 mode: Mainline
+
+# Define specific branch configurations
 branches:
   main:
+    # A regex to match the branch name. This is standard and good practice.
+    regex: ^main$
+
+    # The versioning mode for this specific branch. Should align with the global mode
+    # or be more specific if this branch has unique rules.
+    mode: Mainline
+
+    # How the version should increment for commits on this branch.
+    # 'Patch' is common for stable releases from main.
     increment: Patch
+
+    # This tells GitVersion that this is a "mainline" branch, which is critical
+    # for the Mainline mode to work correctly on this branch.
+    is-mainline: true
+
+    # Prevents GitVersion from trying to put a prerelease tag (e.g., -beta, -alpha)
+    # on versions calculated from the main branch. This is crucial for clean
+    # production release versions (e.g., 1.0.0 instead of 1.0.0-beta.1).
+    tag: ''
+
+    # Ensures that when a feature/hotfix branch is merged into main, its version
+    # doesn't prevent main from incrementing correctly.
+    prevent-increment-of-merged-branch-version: false
+
+    # Important for GitVersion 6.x to properly pick up previous tags and history.
+    # Set to true if you're using conventional commit messages or specific tag formats.
+    # For a clean setup, starting with 'false' is often fine unless you have specific tag rules.
+    track-untracked-litteral-tags: false
+
+    # You might also want to explicitly set the tracking of the branch:
+    # track-merge-targets: true
