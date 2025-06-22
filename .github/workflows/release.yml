@@ -21,15 +21,15 @@ jobs:
           dotnet-version: '9.0.x'
 
       - name: Install GitVersion
-      uses: GitTools/actions/gitversion/setup@v3
-      with:
-        versionSpec: '6.x'
+        uses: GitTools/actions/gitversion/setup@v3
+        with:
+          versionSpec: '6.x'
 
       - name: Run GitVersion
-      id: gitversion
-      uses: GitTools/actions/gitversion/execute@v3
-      with:
-        disableCache: true
+        id: gitversion
+        uses: GitTools/actions/gitversion/execute@v3
+        with:
+          disableCache: true
 
       - name: Display calculated version
         run: |
