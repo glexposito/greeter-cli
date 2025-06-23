@@ -1,7 +1,7 @@
 # Greeter CLI 👋
 
 A simple cross-platform CLI application that greets users.
-
+testyt
 This project is a **proof of concept (POC) to automatically generate, package, and release a CLI application using CI/CD (GitHub Actions)**.
 
 ## ✨ Features
