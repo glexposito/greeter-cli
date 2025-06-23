@@ -5,8 +5,8 @@
 
 version: 2
 updates:
-  - package-ecosystem: "nuget" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  - package-ecosystem: "nuget"
+    directory: "/"
     schedule:
       interval: "weekly"
     groups:
@@ -17,11 +17,9 @@ updates:
         update-types:
         - "minor"
         - "patch"
-        pull-request-title: "chore(deps): update minor and patch dependencies"
       major:
         applies-to: version-updates
         patterns:
         - "*"
         update-types:
         - "major"
-        pull-request-title: "chore(deps): update major dependencies"
