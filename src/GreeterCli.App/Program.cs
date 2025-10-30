@@ -8,7 +8,7 @@ return app.Run(args);
 // ReSharper disable once ClassNeverInstantiated.Global
 public sealed class GreetCommand(IAnsiConsole console) : Command<Settings>
 {
-    public override int Execute(CommandContext context, Settings settings)
+    public override int Execute(CommandContext context, Settings settings, CancellationToken cancellationToken)
     {
         var message = $"Hello, {settings.Name}!";
 
