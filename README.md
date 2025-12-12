@@ -20,14 +20,14 @@ This project is a **proof of concept (POC) to automatically generate, package, a
 ### 🪟 Windows
 
 ```sh
-Greeter-<version>-win-x64.exe Alice --shout
+greeter-<version>-win-x64.exe Alice --shout
 ```
 
 ### 🐧 Linux
 
 ```sh
-chmod +x Greeter-<version>-linux-x64
-./Greeter-<version>-linux-x64 Alice --whisper
+chmod +x greeter-<version>-linux-x64
+./greeter-<version>-linux-x64 Alice --whisper
 ```
 
 ### ⚙️ Options

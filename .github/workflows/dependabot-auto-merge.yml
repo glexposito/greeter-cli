@@ -1,6 +1,6 @@
 name: Dependabot Auto Merge
 
-on: 
+on:
   pull_request:
     types: [opened, synchronize, reopened]
 
@@ -19,11 +19,11 @@ jobs:
         id: metadata
         uses: dependabot/fetch-metadata@v2
         with:
-          github-token: "${{ secrets.AUTO_MERGE_TOKEN }}"
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
 
       - name: Approve and Merge PR
         run: |
           gh pr review --approve "${{ github.event.pull_request.html_url }}"
           gh pr merge --auto --squash "${{ github.event.pull_request.html_url }}"
         env:
-          GH_TOKEN: ${{ secrets.AUTO_MERGE_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
