@@ -65,10 +65,10 @@ jobs:
             --output ./publish/linux
 
       - name: Rename Windows output with version
-        run: mv ./publish/win/GreeterCli.App.exe ./publish/Greeter-${{ steps.gitversion.outputs.semVer }}-win-x64.exe
+        run: mv ./publish/win/GreeterCli.App.exe ./publish/greeter-${{ steps.gitversion.outputs.semVer }}-win-x64.exe
 
       - name: Rename Linux output with version
-        run: mv ./publish/linux/GreeterCli.App ./publish/Greeter-${{ steps.gitversion.outputs.semVer }}-linux-x64
+        run: mv ./publish/linux/GreeterCli.App ./publish/greeter-${{ steps.gitversion.outputs.semVer }}-linux-x64
 
       - name: Create and push tag
         run: |
@@ -82,7 +82,7 @@ jobs:
         with:
           tag_name: v${{ steps.gitversion.outputs.semVer }}
           files: |
-            ./publish/Greeter-${{ steps.gitversion.outputs.semVer }}-win-x64.exe
-            ./publish/Greeter-${{ steps.gitversion.outputs.semVer }}-linux-x64
+            ./publish/greeter-${{ steps.gitversion.outputs.semVer }}-win-x64.exe
+            ./publish/greeter-${{ steps.gitversion.outputs.semVer }}-linux-x64
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
