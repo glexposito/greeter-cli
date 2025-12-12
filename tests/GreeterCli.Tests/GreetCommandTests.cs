@@ -24,7 +24,7 @@ public class GreetCommandTests
         result.ExitCode.ShouldBe(0);
         result.Output.ShouldContain($"HELLO, {Name.ToUpper()}!", Case.Sensitive);
     }
-    
+
     [Fact]
     public void ShouldPrintLowercase_WhenWhisperIsUsed()
     {
@@ -35,7 +35,7 @@ public class GreetCommandTests
         result.ExitCode.ShouldBe(0);
         result.Output.ShouldContain($"hello, {Name.ToLower()}!", Case.Sensitive);
     }
-    
+
     [Fact]
     public void ShouldPrintNormal_WhenNoOptionIsUsed()
     {
