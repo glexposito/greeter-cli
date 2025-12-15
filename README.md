@@ -40,7 +40,7 @@ Print the normal greeting when no option is used.
 
 ## 🛠️ Development
 
-- 🧰 .NET 9.0 required for building and testing.
+- 🧰 .NET 10.0 required for building and testing.
 - 🧪 Run tests with:
 
   ```sh
@@ -54,5 +54,3 @@ Releases are automated via GitHub Actions. On every push to `main`, the workflow
 - Builds and tests the app.
 - Publishes self-contained executables for Windows and Linux.
 - Uploads the binaries as release assets.
-
----
