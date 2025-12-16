@@ -65,10 +65,10 @@ jobs:
             --output ./publish/linux
 
       - name: Rename Windows output with version
-        run: mv ./publish/win/GreeterCli.App.exe ./publish/greeter-${{ steps.gitversion.outputs.semVer }}-win-x64.exe
+        run: mv ./publish/win/greeter.exe ./publish/greeter-${{ steps.gitversion.outputs.semVer }}-win-x64.exe
 
       - name: Rename Linux output with version
-        run: mv ./publish/linux/GreeterCli.App ./publish/greeter-${{ steps.gitversion.outputs.semVer }}-linux-x64
+        run: mv ./publish/linux/greeter ./publish/greeter-${{ steps.gitversion.outputs.semVer }}-linux-x64
 
       - name: Create and push tag
         run: |
