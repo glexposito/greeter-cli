@@ -20,19 +20,24 @@ The primary purpose of this repository is to serve as a **Proof of Concept (POC)
 
 [Download the latest version here](https://github.com/glexposito/greeter-cli/releases)
 
+Under Assets, choose the file for your operating system:
+
+- **Linux:** `greeter`
+- **Windows:** `greeter.exe`
+
 ## 🚀 Usage
-
-### 🪟 Windows
-
-```sh
-greeter.exe Alice --shout
-```
 
 ### 🐧 Linux
 
 ```sh
 chmod +x greeter
 ./greeter Alice --whisper
+```
+
+### 🪟 Windows
+
+```sh
+greeter.exe Alice --whisper
 ```
 
 ### ⚙️ Options
