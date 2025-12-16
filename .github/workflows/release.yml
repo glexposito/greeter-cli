@@ -5,8 +5,11 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
-  Release:
+  release:
     runs-on: ubuntu-latest
 
     steps:
@@ -36,15 +39,15 @@ jobs:
           echo "GitVersion calculated SemVer: ${{ steps.gitversion.outputs.semVer }}"
 
       - name: Restore dependencies
-        run: dotnet restore src/GreeterCli.App/GreeterCli.App.csproj
+        run: dotnet restore
 
-      - name: Build
-        run: dotnet build src/GreeterCli.App/GreeterCli.App.csproj --configuration Release --no-restore /p:Version=${{ steps.gitversion.outputs.semVer }}
+      - name: Build (Release)
+        run: dotnet build --configuration Release --no-restore /p:Version=${{ steps.gitversion.outputs.semVer }}
 
       - name: Run tests
-        run: dotnet test tests/GreeterCli.Tests/GreeterCli.Tests.csproj --no-build --logger "console"
+        run: dotnet test --configuration Release --no-build --logger "console"
 
-      - name: Publish single-file self-contained app for Windows
+      - name: Publish (Windows)
         run: |
           dotnet publish src/GreeterCli.App/GreeterCli.App.csproj \
             --configuration Release \
@@ -54,7 +57,7 @@ jobs:
             /p:Version=${{ steps.gitversion.outputs.semVer }} \
             --output ./publish/win
 
-      - name: Publish single-file self-contained app for Linux
+      - name: Publish (Linux)
         run: |
           dotnet publish src/GreeterCli.App/GreeterCli.App.csproj \
             --configuration Release \
@@ -64,19 +67,33 @@ jobs:
             /p:Version=${{ steps.gitversion.outputs.semVer }} \
             --output ./publish/linux
 
-      - name: Create and push tag
+      - name: Prepare release assets (stable names)
+        run: |
+          mkdir -p ./publish/assets
+          mv ./publish/win/greeter.exe ./publish/assets/greeter.exe
+          mv ./publish/linux/greeter ./publish/assets/greeter
+          chmod +x ./publish/assets/greeter
+
+      - name: Create and push tag (skip if exists)
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git tag v${{ steps.gitversion.outputs.semVer }}
-          git push origin v${{ steps.gitversion.outputs.semVer }}
+          git fetch --tags
 
-      - name: Upload release assets
+          TAG="v${{ steps.gitversion.outputs.semVer }}"
+          if git rev-parse "$TAG" >/dev/null 2>&1; then
+            echo "Tag $TAG already exists - skipping tag creation."
+          else
+            git tag -a "$TAG" -m "Release $TAG"
+            git push origin "$TAG"
+          fi
+
+      - name: Create GitHub Release + upload assets
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v${{ steps.gitversion.outputs.semVer }}
           files: |
-            ./publish/win/greeter.exe
-            ./publish/linux/greeter
+            ./publish/assets/greeter.exe
+            ./publish/assets/greeter
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
