@@ -2,12 +2,7 @@
 
 A simple cross-platform CLI application that greets users.
 
-The primary purpose of this repository is to serve as a **Proof of Concept (POC)**
-
-1.  **Spectre.Console CLI Framework:** To evaluate the core capabilities of the [Spectre.Console CLI framework](https://spectreconsole.net/cli/), focusing on the basic command structure and leveraging its rich, cross-platform terminal features.
-2.  **Simple CI/CD Pipeline:** To establish and test a foundational release workflow using **GitHub Actions** that achieves:
-    * Automated cross-platform packaging of self-contained executables (Windows, macOS, Linux).
-    * Triggered release creation on GitHub based on version tags.
+This project is a **proof of concept (POC) to automatically generate, package, and release a CLI application using CI/CD (GitHub Actions)**.
 
 ## ✨ Features
 
@@ -25,14 +20,14 @@ The primary purpose of this repository is to serve as a **Proof of Concept (POC)
 ### 🪟 Windows
 
 ```sh
-greeter.exe Alice --shout
+greeter-<version>-win-x64.exe Alice --shout
 ```
 
 ### 🐧 Linux
 
 ```sh
-chmod +x greeter
-./greeter Alice --whisper
+chmod +x greeter-<version>-linux-x64
+./greeter-<version>-linux-x64 Alice --whisper
 ```
 
 ### ⚙️ Options
@@ -40,7 +35,6 @@ chmod +x greeter
 - `<NAME>`: The name to greet.
 - `--shout`: Print the greeting in uppercase.
 - `--whisper`: Print the greeting in lowercase.
-- `-h, --help`:	Displays the application's help screen.
 
 Print the normal greeting when no option is used.
 
