@@ -2,10 +2,10 @@ using System.ComponentModel;
 using Spectre.Console;
 using Spectre.Console.Cli;
 
-namespace GreeterCli.App;
+namespace GreeterCli.App.Commands;
 
 // ReSharper disable once ClassNeverInstantiated.Global
-public sealed class Settings : CommandSettings
+public sealed class GreetCommandSettings : CommandSettings
 {
     [Description("Name of the person to greet.")]
     [CommandArgument(0, "<name>")]

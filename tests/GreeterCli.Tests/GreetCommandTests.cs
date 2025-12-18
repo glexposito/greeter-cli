@@ -1,5 +1,6 @@
 using Shouldly;
 using Spectre.Console.Testing;
+using GreeterCli.App.Commands;
 
 namespace GreeterCli.Tests;
 
@@ -45,5 +46,16 @@ public class GreetCommandTests
         // Assert
         result.ExitCode.ShouldBe(0);
         result.Output.ShouldContain($"Hello, {Name}!", Case.Sensitive);
+    }
+    
+    [Fact]
+    public void ShouldPrintError_WhenUsingWhisperAndShout()
+    {
+        // Act
+        var result = _tester.Run($"{Name}", "--whisper", "--shout");
+
+        // Assert
+        result.ExitCode.ShouldBe(-1);
+        result.Output.ShouldContain("Cannot use --shout and --whisper together.");
     }
 }
