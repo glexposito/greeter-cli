@@ -12,11 +12,11 @@ public sealed class GreetCommand(IAnsiConsole console) : Command<GreetCommandSet
 
         if (settings.Shout)
         {
-            message = message.ToUpper();
+            message = message.ToUpperInvariant();
         }
         else if (settings.Whisper)
         {
-            message = message.ToLower();
+            message = message.ToLowerInvariant();
         }
 
         console.MarkupLine($"[green]{message}[/]");
