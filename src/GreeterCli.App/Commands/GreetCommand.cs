@@ -6,7 +6,7 @@ namespace GreeterCli.App.Commands;
 // ReSharper disable once ClassNeverInstantiated.Global
 public sealed class GreetCommand(IAnsiConsole console) : Command<GreetCommandSettings>
 {
-    public override int Execute(CommandContext context, GreetCommandSettings settings, CancellationToken cancellationToken)
+    protected override int Execute(CommandContext context, GreetCommandSettings settings, CancellationToken cancellationToken)
     {
         var message = $"Hello, {settings.Name}!";
 

@@ -1,6 +1,6 @@
 using Shouldly;
-using Spectre.Console.Testing;
 using GreeterCli.App.Commands;
+using Spectre.Console.Cli.Testing;
 
 namespace GreeterCli.Tests;
 
